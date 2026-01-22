@@ -1,88 +1,74 @@
 function getComputerChoice(min, max) {
-const minCeiled = Math.ceil(min);
-const maxFloored = Math.floor(max);
-return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
-    
-}
 
-function getHumanChoice(choice){
-   
-    console.log(choice);
-    return choice;
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * 3);
 
 }
 
-const random = getComputerChoice(1, 3);
-let computerChoice;
+//Função que vai pegar a escolha do usuário humano;
+function getHumanChoice(choice) {
+choice = prompt("Escolha (Pedra, Papel ou Tesoura): ");
 
-if (random === 1) {
-    computerChoice = "Rock";
-} else if (random === 2) {
-    computerChoice = "Paper"
-} else {
-    computerChoice = "Scissor"
-
+return choice;
 }
 
-console.log("Computer Choice is ",computerChoice);
+//Função que vai pegar a escolha do usuário e independente da entrada do usuário, ele vai Transformar a primeira letra em maiúscula e as outras letras em minúsculas;
+function capitalizeFirstLetter(string) {
+    if (string.lenght === 0) {
+        return "Entrada Inválida";
+      
+    }
+
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
 
 
-
-let humanChoice = getHumanChoice(prompt("Escolha pedra papel ou tesoura"));
-
-let playerScore = 0;
+//Variáveis que vão calcular o placar do usuário e o do computador;
+let humanScore = 0;
 let computerScore = 0;
 
 
-function playRound(_human, _computer) {
-if (_human === "Rock" && _computer === "Paper") {
-    console.log("Computer Won");
-    computerScore = computerScore + 1;
-} else if (_human === "Rock" && _computer === "Scissor") {
-    console.log("Player Won");
-    playerScore = playerScore + 1;
-} else if (_human === "Paper" && _computer === "Rock"){
-    console.log("Player Won");
-    playerScore = playerScore + 1;
-} else if (_human === "Paper" && _computer === "Scissor") {
-    console.log("Computer Won") 
-    computerScore = computerScore + 1;
-} else if (_human === "Scissor" && _computer === "Paper") {
-    console.log("Player Won");
-    playerScore = playerScore + 1;
-} else if (_human === "Scissor" && _computer === "Rock") {
-    console.log("Computer Won"); 
-    computerScore = computerScore + 1;
-} else if (_human = "Paper" && _computer === "Paper") {
-    console.log("Draw");
-} else if (_human = "Rock" && _computer === "Rock") {
-    console.log("Draw");
-} else if (_human = "Scissor" && _computer === "Scissor") {
-    console.log("Draw");
-    
+//Função que vai pegar as escolhas do ser humano e a do computador e vai rodar o jogo;
+function playRound(humanChoice, computerChoice) {
+
+    if (humanChoice === computerChoice) {
+        console.log("Empate!");
+    } else if (humanChoice === "Pedra" && computerChoice === "Papel" || 
+        humanChoice === "Papel" && computerChoice === "Tesoura" ||
+         humanChoice === "Tesoura" && computerChoice === "Pedra") {
+            console.log("O computador venceu!")
+            computerScore = computerScore + 1;
+         } else {
+            console.log("Você venceu!")
+            humanScore = humanScore + 1;
+         }
+
+         return console.log("Você : ", humanScore, "Computador: ", computerScore);
+
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice (1,3);
+
+
+let humanChoice = capitalizeFirstLetter(humanSelection);
+let computerChoice;
+
+if (computerSelection == 1) {
+    computerChoice = "Pedra";
+} else if (computerSelection == 2) {
+    computerChoice = "Papel";
 } else {
-    console.log("Invalid Entry");
-
+    computerChoice = "Tesoura";
 }
 
+console.log(humanChoice);
+console.log(computerChoice);
+
+console.log(playRound(humanChoice, computerChoice));
 
 
-
-console.log("Computer Score is:", computerScore);
-console.log("Player Score is:", playerScore);
+function playGame(human, computer){
 
 }
-
-playRound(humanChoice, computerChoice);
-
-
-
-
-
-
-//function getRandomIntInclusive(min, max) {
-    //const minCeiled = Math.ceil(min);
-    //const maxFloored = Math.floor(max);
-    //return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
-  //}
-
