@@ -55,8 +55,6 @@ function playRound(humanChoice, computerChoice) {
 
 }
 
-    // return result.textContent = "SCORE + \nCOMPUTER: + {$computerScore) + \nYOU: + {$humanScore}" 
-
 document.getElementById("rock").addEventListener("click", function() {
     playRound(getHumanChoice("ROCK"), getComputerChoice());
 })
