@@ -1,10 +1,11 @@
 let humanScore = 0;
 let computerScore = 0;
-let result; 
+ 
 
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissor = document.querySelector("scissor");
+const result = document.querySelector("result");
 
 function getComputerChoice() {
 
@@ -53,6 +54,8 @@ function playRound(humanChoice, computerChoice) {
     );
 
 }
+
+    // return result.textContent = "SCORE + \nCOMPUTER: + {$computerScore) + \nYOU: + {$humanScore}" 
 
 document.getElementById("rock").addEventListener("click", function() {
     playRound(getHumanChoice("ROCK"), getComputerChoice());
