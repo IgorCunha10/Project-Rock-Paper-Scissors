@@ -9,6 +9,7 @@ const result = document.querySelector("#result");
 const playerScore = document.querySelector("#playerScore");
 const compScore = document.querySelector('#computerScore');
 const roundWinner = document.querySelector("#roundWinner");
+const restartBtn = document.querySelector("#restart");
 
 function getComputerChoice() {
 
@@ -51,12 +52,33 @@ function playRound(humanChoice, computerChoice) {
         winner = "YOU WON.";
         humanScore++;
     }
+
+    if(humanScore == 5) {
+        winner = "CONGRATULATIONS! YOU WON THE GAME.";
+        
+        rock.disabled = true;
+        scissor.disabled = true;
+        paper.disabled = true;
+
+    } else if(computerScore == 5) {
+        winner = "DEFEAT! COMPUTER HAS WON THE GAME."
+
+        rock.disabled = true;
+        scissor.disabled = true;
+        paper.disabled = true;
+
+    }
     
     playerScore.textContent = `Player: ${humanScore}`;
-    compScore.textContent = `Computer ${computerScore}`;
+    compScore.textContent = `Computer: ${computerScore}`;
     roundWinner.textContent = `${winner}`;
     
 }
+
+function restartGame() {
+    location.reload();
+}
+
 
 document.getElementById("rock").addEventListener("click", function() {
     playRound(getHumanChoice("ROCK"), getComputerChoice());
@@ -69,3 +91,5 @@ document.getElementById("paper").addEventListener("click", function() {
 document.getElementById("scissor").addEventListener("click", function() {
     playRound(getHumanChoice("SCISSOR"), getComputerChoice());
 })
+
+restartBtn.addEventListener("click", restartGame)
